@@ -71,6 +71,9 @@ cd voicelog
 
 - Open the project directory.
 - Make sure ONNX Runtime Mobile is installed via Gradle.
+- Ensure that `gradle/wrapper/gradle-wrapper.jar` exists. If it is missing,
+  run `gradle wrapper --gradle-version 8.1` or copy the JAR from a matching
+  Gradle distribution so Android Studio can use the embedded wrapper.
 
 ### 3. Add the ECAPA-TDNN Model
 
