@@ -12,6 +12,7 @@
 - ❓ **Unknown Handling** – Prompts you to enter name/number when a new voice is detected
 - 💾 **Learning Mode** – Saves new voices after you provide their details
 - 🗂️ **Conversation Log** – Time-stamped history of each interaction
+- 🚫 **Self-Voice Filtering** – Optionally mark your own voice so it won't be logged
 
 ---
 
@@ -106,3 +107,4 @@ MIT or proprietary – your choice depending on commercial use plans.
 This is a local-only MVP and does **not** run in the background by design. It listens and logs only while the app window is active.
 The microphone begins recording automatically once the app is launched and stops when you leave the app.
 When an unknown speaker is heard, you'll be asked to enter their name and optional phone number so the app can recognize them next time.
+You can also mark a captured voice as your own so it will be ignored in future sessions.

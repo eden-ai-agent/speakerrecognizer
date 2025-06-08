@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity(), VoiceProcessor.Listener {
 
     override fun onBufferReady(data: ShortArray) {
         val embedding = embedder.embed(data)
+        if (matcher.isSelf(embedding)) {
+            return
+        }
         val match = matcher.match(embedding)
         if (match != null) {
             runOnUiThread {
@@ -61,9 +64,14 @@ class MainActivity : AppCompatActivity(), VoiceProcessor.Listener {
             }
         } else {
             runOnUiThread {
-                AddSpeakerDialog(this) { name, phone ->
-                    db.addSpeaker(Speaker(name, phone, embedding))
-                    logDB.addLogEntry(name, phone, System.currentTimeMillis())
+                AddSpeakerDialog(this) { name, phone, isSelf ->
+                    val speaker = Speaker(name, phone, embedding)
+                    if (isSelf) {
+                        db.setSelfSpeaker(speaker)
+                    } else {
+                        db.addSpeaker(speaker)
+                        logDB.addLogEntry(name, phone, System.currentTimeMillis())
+                    }
                 }.show()
             }
         }

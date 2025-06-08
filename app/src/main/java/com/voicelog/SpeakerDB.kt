@@ -8,9 +8,14 @@ data class Speaker(
 
 class SpeakerDB {
     private val speakers = mutableListOf<Speaker>()
+    var selfSpeaker: Speaker? = null
 
     fun addSpeaker(speaker: Speaker) {
         speakers.add(speaker)
+    }
+
+    fun setSelfSpeaker(speaker: Speaker) {
+        selfSpeaker = speaker
     }
 
     fun allSpeakers(): List<Speaker> = speakers.toList()

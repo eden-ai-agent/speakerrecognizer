@@ -17,6 +17,11 @@ class Matcher(private val db: SpeakerDB) {
         return if (normA == 0f || normB == 0f) 0f else dot / sqrt(normA * normB)
     }
 
+    fun isSelf(embedding: FloatArray, threshold: Float = 0.8f): Boolean {
+        val self = db.selfSpeaker ?: return false
+        return cosine(embedding, self.embedding) >= threshold
+    }
+
     fun match(embedding: FloatArray, threshold: Float = 0.8f): Speaker? {
         var best: Speaker? = null
         var bestScore = 0f
