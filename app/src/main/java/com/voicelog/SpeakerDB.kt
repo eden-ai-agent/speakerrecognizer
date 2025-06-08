@@ -1,7 +1,17 @@
 package com.voicelog
 
+data class Speaker(
+    val name: String,
+    val phone: String?,
+    val embedding: FloatArray
+)
+
 class SpeakerDB {
-    fun addSpeaker(name: String, embedding: FloatArray) {
-        // TODO: persist speaker information
+    private val speakers = mutableListOf<Speaker>()
+
+    fun addSpeaker(speaker: Speaker) {
+        speakers.add(speaker)
     }
+
+    fun allSpeakers(): List<Speaker> = speakers.toList()
 }

@@ -6,10 +6,11 @@
 
 ## 📱 Features
 
-- 🎤 **Live Voice Detection** – Captures microphone input while the app is active
+- 🎤 **Live Voice Detection** – Microphone starts listening automatically whenever the app window is active
 - 🧠 **Local Voiceprint Matching** – Matches speech to previously saved voiceprints using cosine similarity
-- 🧾 **Contact Assignment** – Automatically shows saved name & number for known speakers
+- 🧾 **Contact Assignment** – Automatically displays saved name and optional phone number for recognized speakers
 - ❓ **Unknown Handling** – Prompts you to enter name/number when a new voice is detected
+- 💾 **Learning Mode** – Saves new voices after you provide their details
 - 🗂️ **Conversation Log** – Time-stamped history of each interaction
 
 ---
@@ -103,3 +104,5 @@ MIT or proprietary – your choice depending on commercial use plans.
 ## 💡 Notes
 
 This is a local-only MVP and does **not** run in the background by design. It listens and logs only while the app window is active.
+The microphone begins recording automatically once the app is launched and stops when you leave the app.
+When an unknown speaker is heard, you'll be asked to enter their name and optional phone number so the app can recognize them next time.
