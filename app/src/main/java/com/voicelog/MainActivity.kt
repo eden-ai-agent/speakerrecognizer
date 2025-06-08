@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), VoiceProcessor.Listener {
         if (match != null) {
             if (match.name != ignoredName) {
                 runOnUiThread {
-                    val info = match.phone?.let { "${'$'}{match.name} (${ '$' }it)" } ?: match.name
+                    val info = match.phone?.let { "${'$'}{match.name} ($it)" } ?: match.name
                     Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
                     logDB.addLogEntry(match.name, match.phone, System.currentTimeMillis())
                 }
