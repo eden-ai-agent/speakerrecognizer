@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity(), VoiceProcessor.Listener {
     private val db = SpeakerDB()
     private val matcher = Matcher(db)
     private val logDB = LogDB()
+    private val ignoredName = "Owner" // skip logging when this speaker is heard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +55,12 @@ class MainActivity : AppCompatActivity(), VoiceProcessor.Listener {
         val embedding = embedder.embed(data)
         val match = matcher.match(embedding)
         if (match != null) {
-            runOnUiThread {
-                val info = match.phone?.let { "${'$'}{match.name} (${ '$' }it)" } ?: match.name
-                Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
-                logDB.addLogEntry(match.name, match.phone, System.currentTimeMillis())
+            if (match.name != ignoredName) {
+                runOnUiThread {
+                    val info = match.phone?.let { "${'$'}{match.name} (${ '$' }it)" } ?: match.name
+                    Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
+                    logDB.addLogEntry(match.name, match.phone, System.currentTimeMillis())
+                }
             }
         } else {
             runOnUiThread {
